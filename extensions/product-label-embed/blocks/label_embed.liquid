@@ -1,0 +1,115 @@
+{% comment %}
+  StickerPulse Product Labels & Badges - Storefront Embed Block
+  Automatically injects active product badges into Collection grids, PDPs, Homepage, and Search results.
+{% endcomment %}
+
+{% if block.settings.enable_labels %}
+  <div id="stickerpulse-root" 
+       data-template="{{ template.name }}"
+       data-product-id="{{ product.id }}"
+       style="display: none;"></div>
+
+  <script>
+    (function() {
+      var rawMetafield = {{ shop.metafields.stickerpulse.labels_data.value | json }};
+      var parsedLabels = null;
+
+      if (rawMetafield) {
+        try {
+          parsedLabels = typeof rawMetafield === 'string' ? JSON.parse(rawMetafield) : rawMetafield;
+        } catch(e) {
+          console.warn('[StickerPulse] Error parsing metafield data:', e);
+        }
+      }
+
+      // Build store product tags map from Liquid
+      var productTagsMap = {};
+      {% if collection and collection.products %}
+        {% for p in collection.products %}
+          productTagsMap[{{ p.id | json }}] = {{ p.tags | json }};
+          productTagsMap[{{ p.handle | json }}] = {{ p.tags | json }};
+        {% endfor %}
+      {% endif %}
+      {% if search and search.results %}
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            productTagsMap[{{ item.id | json }}] = {{ item.tags | json }};
+            productTagsMap[{{ item.handle | json }}] = {{ item.tags | json }};
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if product %}
+        productTagsMap[{{ product.id | json }}] = {{ product.tags | json }};
+        productTagsMap[{{ product.handle | json }}] = {{ product.tags | json }};
+      {% endif %}
+
+      // Default starter badge if metafield has not been initialized yet
+      var defaultLabels = [
+        {
+          id: 1,
+          name: 'Eco-Friendly Label',
+          type: 'text',
+          positionMode: 'inside',
+          anchor: 'top-left',
+          isActive: true,
+          targetMode: 'tags',
+          targetTags: 'eco-friendly',
+          textContent: '🌱 ECO-FRIENDLY',
+          selectedShape: 'capsule-full',
+          bgColor: '#059669',
+          textColor: '#ffffff',
+          badgeIcon: '🌱',
+          iconPosition: 'left',
+          widthPercent: 32,
+          heightPercent: 12,
+          textSizePercent: 44,
+          letterSpacing: 1,
+          hasBorder: false,
+          hasRoundCorner: true,
+          borderRadius: 999,
+          pageDisplay: {
+            productPage: true,
+            collectionPage: true,
+            homepage: true,
+            searchPage: true,
+            cartPage: true
+          },
+          deviceDisplay: 'all'
+        }
+      ];
+
+      window.StickerPulseData = {
+        labels: (Array.isArray(parsedLabels) && parsedLabels.length > 0) ? parsedLabels : defaultLabels,
+        currentPage: '{{ template.name }}' || 'index',
+        currentProduct: {% if product %}{{ product | json }}{% else %}null{% endif %},
+        productTags: productTagsMap,
+        settings: {
+          enableLabels: {{ block.settings.enable_labels | default: true | json }}
+        }
+      };
+    })();
+  </script>
+
+  <link rel="stylesheet" href="{{ 'stickerpulse-storefront.css' | asset_url }}">
+  <script src="{{ 'stickerpulse-storefront.js' | asset_url }}" defer="defer"></script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "StickerPulse Labels",
+  "target": "body",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_labels",
+      "label": "Enable Product Badges & Labels",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Manage and design badges directly inside the StickerPulse App in your Shopify Admin."
+    }
+  ]
+}
+{% endschema %}
+

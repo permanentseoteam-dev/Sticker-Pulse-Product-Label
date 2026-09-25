@@ -1,0 +1,48 @@
+{
+  "mcpServers": {
+    "wsp-permanentkits-com": {
+      "serverUrl": "https://permanentkits.com/wp-json/wsp-mcp/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer f0db60b5fc6f39812b830663ab00752b"
+      },
+      "disabled": false
+    },
+    "firecrawl": {
+      "serverUrl": "https://mcp.firecrawl.dev/v2/mcp"
+    },
+    "agentmemory": {
+      "command": "node",
+      "args": [
+        "C:/Users/ok/AppData/Roaming/npm/node_modules/@agentmemory/mcp/bin.mjs"
+      ],
+      "env": {
+        "AGENTMEMORY_URL": "http://localhost:3111"
+      }
+    },
+    "context7": {
+      "command": "node",
+      "args": [
+        "C:/Users/ok/AppData/Roaming/npm/node_modules/@upstash/context7-mcp/dist/index.js"
+      ]
+    },
+    "sequentialthinking": {
+      "command": "node",
+      "args": [
+        "C:/Users/ok/AppData/Roaming/npm/node_modules/@modelcontextprotocol/server-sequential-thinking/dist/index.js"
+      ]
+    },
+    "wppilot-permanentkits-co": {
+      "serverUrl": "https://permanentkits.com/wp-json/mcp/wppilot",
+      "headers": {
+        "Authorization": "Bearer wpp_AERVQIFgypV1RUb5PhgzZG_oiHPQjsUzGhB9rU-FcLI"
+      }
+    },
+    "21st": {
+      "url": "https://21st.dev/api/mcp",
+      "serverUrl": "https://21st.dev/api/mcp",
+      "headers": {
+        "x-api-key": "$API_KEY_21ST"
+      }
+    }
+  }
+}

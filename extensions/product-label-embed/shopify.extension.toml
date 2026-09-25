@@ -1,0 +1,11 @@
+name = "StickerPulse Labels Embed"
+type = "theme"
+uid = "c3785e65-81be-ecf7-e4dd-3ffa10f8de6258b27696"
+
+[metafields]
+# Declare shop-level metafield for label configurations
+[[metafields.declarations]]
+namespace = "stickerpulse"
+key = "labels_data"
+type = "json"
+owner_type = "shop"

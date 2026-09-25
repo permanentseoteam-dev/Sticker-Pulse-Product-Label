@@ -1,0 +1,133 @@
+/* StickerPulse Storefront Badge Engine CSS */
+.stickerpulse-badge-container {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  z-index: 99 !important;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  line-height: 1.2;
+  text-align: center;
+  user-select: none;
+}
+
+.stickerpulse-badge-inside {
+  position: absolute !important;
+}
+
+.stickerpulse-badge-outside {
+  position: relative !important;
+  display: flex !important;
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+  width: 100% !important;
+}
+
+.stickerpulse-badge-outside.align-left {
+  justify-content: flex-start !important;
+}
+
+.stickerpulse-badge-outside.align-center {
+  justify-content: center !important;
+}
+
+.stickerpulse-badge-outside.align-right {
+  justify-content: flex-end !important;
+}
+
+/* Shape Vector Definitions */
+.sp-shape-circle {
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1;
+}
+
+.sp-shape-capsule-full {
+  border-radius: 999px !important;
+}
+
+.sp-shape-capsule-left {
+  border-radius: 999px 4px 4px 999px !important;
+}
+
+.sp-shape-capsule-right {
+  border-radius: 4px 999px 999px 4px !important;
+}
+
+.sp-shape-flag-left {
+  clip-path: polygon(0% 0%, 100% 0%, 85% 50%, 100% 100%, 0% 100%) !important;
+  padding-right: 14px !important;
+}
+
+.sp-shape-pointer-left {
+  clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%) !important;
+  padding-left: 14px !important;
+}
+
+.sp-shape-pointer-right {
+  clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%) !important;
+  padding-right: 14px !important;
+}
+
+.sp-shape-double-notch {
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%) !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.sp-shape-arrow-notch {
+  clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%) !important;
+  padding-left: 12px !important;
+  padding-right: 14px !important;
+}
+
+.sp-shape-corner-ribbon-left {
+  transform: rotate(-45deg);
+  text-transform: uppercase;
+}
+
+.sp-shape-corner-ribbon-right {
+  transform: rotate(45deg);
+  text-transform: uppercase;
+}
+
+.sp-shape-corner-triangle-left {
+  clip-path: polygon(0 0, 100% 0, 0 100%) !important;
+}
+
+.sp-shape-corner-triangle-right {
+  clip-path: polygon(0 0, 100% 0, 100% 100%) !important;
+}
+
+.sp-shape-slanted-left {
+  transform: skewX(-15deg);
+}
+
+.sp-shape-slanted-right {
+  transform: skewX(15deg);
+}
+
+.sp-shape-hexagon {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%) !important;
+}
+
+.sp-shape-scallop {
+  border-radius: 35% !important;
+  transform: rotate(45deg);
+}
+
+.sp-shape-fold-left {
+  clip-path: polygon(8px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 8px) !important;
+}
+
+.sp-shape-fold-right {
+  clip-path: polygon(0% 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, 0% 100%) !important;
+}
+
+.sp-shape-trapezoid-top {
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%) !important;
+}
+
+.sp-shape-trapezoid-bottom {
+  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%) !important;
+}

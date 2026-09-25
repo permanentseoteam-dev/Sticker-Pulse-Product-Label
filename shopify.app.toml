@@ -1,0 +1,26 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "YOUR_SHOPIFY_CLIENT_ID"
+name = "StickerPulse Product Labels & Badges"
+handle = "stickerpulse-product-labels"
+application_url = "https://shopify.dev/apps/default-app-home"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "your-development-store.myshopify.com"
+
+[access_scopes]
+# Scopes required for reading products and managing theme embed metadata
+scopes = "read_products,write_products,read_themes"
+
+[auth]
+redirect_urls = [
+  "https://shopify.dev/apps/default-app-home/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2025-01"
+
+[pos]
+embedded = false
