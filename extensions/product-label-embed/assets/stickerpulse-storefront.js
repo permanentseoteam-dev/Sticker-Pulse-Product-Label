@@ -31,7 +31,13 @@
       pageType = 'search';
     } else if (rawTemplate.indexOf('cart') !== -1 || pathname.indexOf('/cart') !== -1) {
       pageType = 'cart';
-    } else if (rawTemplate.indexOf('index') !== -1 || pathname === '/' || pathname === '') {
+    } else if (
+      rawTemplate.indexOf('index') !== -1 || 
+      rawTemplate.indexOf('home') !== -1 || 
+      pathname === '/' || 
+      pathname === '' || 
+      /^\/([a-z]{2}(-[a-z]{2})?)?\/?$/i.test(pathname)
+    ) {
       pageType = 'index';
     } else {
       pageType = rawTemplate || 'index';
@@ -42,7 +48,7 @@
       if (!label.pageDisplay) return true;
       if (pageType === 'product' && label.pageDisplay.productPage === false) return false;
       if (pageType === 'collection' && label.pageDisplay.collectionPage === false) return false;
-      if (pageType === 'index' && label.pageDisplay.homepage === false) return false;
+      if ((pageType === 'index' || pageType === 'homepage' || pageType === 'home') && label.pageDisplay.homepage === false) return false;
       if (pageType === 'search' && label.pageDisplay.searchPage === false) return false;
       if (pageType === 'cart' && label.pageDisplay.cartPage === false) return false;
 
@@ -102,6 +108,11 @@
       if (!label) return false;
       if (!isLabelAllowedOnPage(label)) return false;
 
+      // Allow all products if targetMode is 'all' or missing
+      if (!label.targetMode || label.targetMode === 'all') {
+        return true;
+      }
+
       // Strict Tag-based Product Filtering
       if (label.targetMode === 'tags' && label.targetTags) {
         var targetList = String(label.targetTags)
@@ -109,24 +120,24 @@
           .map(function (t) { return t.trim().toLowerCase(); })
           .filter(Boolean);
 
-        if (targetList.length > 0) {
-          var ctx = extractProductContext(card, mediaContainer, titleContainer);
-          var hasTagMatch = ctx.tags.some(function (pTag) {
-            return targetList.some(function (tTag) {
-              return pTag === tTag || pTag.indexOf(tTag) !== -1 || tTag.indexOf(pTag) !== -1;
-            });
+        if (targetList.length === 0) return true;
+
+        var ctx = extractProductContext(card, mediaContainer, titleContainer);
+        var hasTagMatch = ctx.tags.some(function (pTag) {
+          return targetList.some(function (tTag) {
+            return pTag === tTag || pTag.indexOf(tTag) !== -1 || tTag.indexOf(pTag) !== -1;
           });
+        });
 
-          if (!hasTagMatch && card) {
-            var cardAttr = (card.className + ' ' + (card.dataset.tags || '') + ' ' + (card.dataset.productTags || '')).toLowerCase();
-            hasTagMatch = targetList.some(function (tTag) {
-              return cardAttr.indexOf(tTag) !== -1;
-            });
-          }
+        if (!hasTagMatch && card) {
+          var cardAttr = (card.className + ' ' + (card.dataset.tags || '') + ' ' + (card.dataset.productTags || '')).toLowerCase();
+          hasTagMatch = targetList.some(function (tTag) {
+            return cardAttr.indexOf(tTag) !== -1;
+          });
+        }
 
-          if (!hasTagMatch) {
-            return false;
-          }
+        if (!hasTagMatch) {
+          return false;
         }
       }
 
@@ -295,7 +306,13 @@
         '.product-item',
         '.product-grid-item',
         '[data-product-card]',
-        '.featured-product'
+        '.featured-product',
+        '.featured-collection__item',
+        '.product-list__item',
+        '.product-block',
+        '.product-fly-card',
+        '.grid-product',
+        'product-card'
       ];
 
       var MEDIA_SELECTORS = [

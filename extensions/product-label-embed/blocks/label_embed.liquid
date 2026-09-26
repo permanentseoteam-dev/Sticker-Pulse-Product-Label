@@ -30,6 +30,20 @@
           productTagsMap[{{ p.handle | json }}] = {{ p.tags | json }};
         {% endfor %}
       {% endif %}
+      {% if template.name == 'index' or template.name == 'home' %}
+        {% if collections.frontpage and collections.frontpage.products %}
+          {% for p in collections.frontpage.products %}
+            productTagsMap[{{ p.id | json }}] = {{ p.tags | json }};
+            productTagsMap[{{ p.handle | json }}] = {{ p.tags | json }};
+          {% endfor %}
+        {% endif %}
+        {% if collections.all and collections.all.products %}
+          {% for p in collections.all.products limit: 50 %}
+            productTagsMap[{{ p.id | json }}] = {{ p.tags | json }};
+            productTagsMap[{{ p.handle | json }}] = {{ p.tags | json }};
+          {% endfor %}
+        {% endif %}
+      {% endif %}
       {% if search and search.results %}
         {% for item in search.results %}
           {% if item.object_type == 'product' %}

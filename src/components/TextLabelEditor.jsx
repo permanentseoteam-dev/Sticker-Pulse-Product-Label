@@ -144,7 +144,7 @@ export function TextLabelEditor({ labelType = 'text', initialData = null, onSave
   );
   const [deviceDisplay, setDeviceDisplay] = useState(initialData?.deviceDisplay || 'all'); // 'all' | 'desktop' | 'mobile'
   const [showMultipleLabelsPreview, setShowMultipleLabelsPreview] = useState(initialData?.showMultipleLabelsPreview || false);
-  const [targetMode, setTargetMode] = useState(initialData?.targetMode || 'tags'); // 'all' | 'tags'
+  const [targetMode, setTargetMode] = useState(initialData?.targetMode || 'all'); // 'all' | 'tags'
   const [targetTags, setTargetTags] = useState(initialData?.targetTags || 'eco-friendly');
 
   // Gallery Target ('primary' | 'secondary')

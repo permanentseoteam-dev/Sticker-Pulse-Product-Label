@@ -172,7 +172,16 @@ export function App() {
                         {lbl.positionMode === 'inside' ? 'Inside Image' : 'Outside Image'}
                       </td>
                       <td style={{ padding: '14px 16px', color: '#4b5563' }}>
-                        Product, Collection
+                        {(() => {
+                          if (!lbl.pageDisplay) return 'All Pages';
+                          const pages = [];
+                          if (lbl.pageDisplay.productPage) pages.push('Product');
+                          if (lbl.pageDisplay.collectionPage) pages.push('Collection');
+                          if (lbl.pageDisplay.homepage) pages.push('Home');
+                          if (lbl.pageDisplay.searchPage) pages.push('Search');
+                          if (lbl.pageDisplay.cartPage) pages.push('Cart');
+                          return pages.length > 0 ? pages.join(', ') : 'None';
+                        })()}
                       </td>
                       <td style={{ padding: '14px 16px' }}>
                         <button
