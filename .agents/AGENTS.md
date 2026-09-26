@@ -8,5 +8,6 @@ Please follow these mandatory rules for all tasks on this repository:
 4. **Verification**: Always verify changes with `npm run build` before declaring task complete.
 5. **Option Parity**: Every size (width %, height %, text size %, letter spacing, image size) and adjustment (borders, rounded corners with `overflow: 'hidden'`) option must logically work and live-update in BOTH Text Label and Image Label types across inside/outside modes.
 6. **Navbar Preview Dropdown Parity**: The top navbar dropdown (`previewPage`) must logically switch between dedicated storefront layouts (`collection`, `product`, `homepage`, `search`, `cart`) and respect Page Display / Device Display settings across both Text Label and Image Label types.
+7. **GitHub Sync**: Always commit and push all modified and newly created files to the GitHub repository (`permanentseoteam-dev/Sticker-Pulse-Product-Label`, `origin main`) so the remote repository, CI/CD, and Vercel deployments stay completely up to date.
 
 
