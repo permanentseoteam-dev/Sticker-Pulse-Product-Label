@@ -3,7 +3,7 @@
 client_id = "YOUR_SHOPIFY_CLIENT_ID"
 name = "StickerPulse Product Labels & Badges"
 handle = "stickerpulse-product-labels"
-application_url = "https://sticker-pulse-product-label-n5co3lunt-pseo-dev1.vercel.app"
+application_url = "https://sticker-pulse-product-label.vercel.app"
 embedded = true
 
 [build]
@@ -16,7 +16,7 @@ scopes = "read_products,write_products,read_themes"
 
 [auth]
 redirect_urls = [
-  "https://sticker-pulse-product-label-n5co3lunt-pseo-dev1.vercel.app/api/auth/callback"
+  "https://sticker-pulse-product-label.vercel.app/api/auth/callback"
 ]
 
 [webhooks]

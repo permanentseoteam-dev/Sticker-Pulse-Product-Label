@@ -2,7 +2,7 @@
 
 client_id = "5a9a0dde1957fcdfb78b02674e51a955"
 name = "StickerPulse Product Labels"
-application_url = "https://sticker-pulse-product-label-n5co3lunt-pseo-dev1.vercel.app"
+application_url = "https://sticker-pulse-product-label.vercel.app"
 embedded = true
 handle = "stickerpulse-product-labels"
 
@@ -17,7 +17,7 @@ api_version = "2026-10"
 scopes = "read_products,read_themes,write_products"
 
 [auth]
-redirect_urls = [ "https://sticker-pulse-product-label-n5co3lunt-pseo-dev1.vercel.app/api/auth/callback" ]
+redirect_urls = [ "https://sticker-pulse-product-label.vercel.app/api/auth/callback" ]
 
 [pos]
 embedded = false
